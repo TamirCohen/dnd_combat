@@ -28,10 +28,10 @@ const MainComponent: React.FC = () => {
 
     return (
         <div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 50px)', gap: '1px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 50px)', gap: '1px', alignItems: 'center', justifyContent: 'center' }}>
                 {[...Array(10)].map((_, rowIndex) =>
                     [...Array(10)].map((__, colIndex) => (
-                        <GridCell rowIndex={rowIndex} colIndex={colIndex} key={`${rowIndex}-${colIndex}`} onDrop={(targetLocation, character_id) => handleDrop(character_id, targetLocation)}>
+                        <GridCell rowIndex={rowIndex} colIndex={colIndex} key={`${rowIndex}-${colIndex}`} onDrop={(targetLocation: { row: number; col: number }, character_id: number) => handleDrop(character_id, targetLocation)}>
                             {characters.map((character) => {
                                 if (character.location.row === rowIndex && character.location.col === colIndex) {
                                     return (

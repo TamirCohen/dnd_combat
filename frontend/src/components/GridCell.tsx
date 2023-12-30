@@ -1,5 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/system';
+import { useDrop } from 'react-dnd';
+import CharacterState from './Character';
 
 
 const PageContainer = styled('div')({
@@ -36,20 +38,35 @@ const Image = styled('img')({
   objectFit: 'cover', // Ensure the image covers the entire container
 });
 
-const GridExample = () => {
+
+// GridCell.tsx
+
+interface GridCellProps {
+  onDrop: (targetLocation: { row: number; col: number }, character_id: number) => void;
+  rowIndex: number;
+  colIndex: number;
+  children: React.ReactNode;
+}
+
+const GridCell: React.FC<GridCellProps> = ({ onDrop, rowIndex, colIndex, children}) => {
+  const [, drop] = useDrop(() => ({
+    accept: 'CHARACTER',
+    drop: (item: any) => onDrop({ row: rowIndex, col: colIndex }, item.id),
+  }));
+
   return (
-    <PageContainer>
-      <GridContainer>
-        {[...Array(100)].map((_, index) => (
-          <GridItem key={index}>
-            {index === 0 && <Image src="/images/dwarf.jpeg" alt={`Image ${index + 1}`} />}
-            {index === 10 && <Image src="/images/dragon.jpeg" alt={`Image ${index + 1}`} />}
-            {index === 25 && <Image src="/images/magician.jpg" alt={`Image ${index + 1}`} />}
-          </GridItem>
-        ))}
-      </GridContainer>
-    </PageContainer>
+    <div
+      ref={drop}
+      style={{
+        width: '50px',
+        height: '50px',
+        border: '2px solid #000',
+        background: 'rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      {children}
+    </div>
   );
 };
 
-export default GridExample;
+export default GridCell;

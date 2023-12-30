@@ -7,18 +7,19 @@ interface BackgroundProps {
 }
 
 const BackgroundComponent: React.FC<BackgroundProps> = ({ children }) => {
-    const [selectedImage, setSelectedImage] = useState<Image | null>(null);
-
-    const handleSelectImage = (selectedImage: Image | null) => {
-        setSelectedImage(selectedImage);
-    };
-
     const imageList: Image[] = [
         { url: '/images/backgrounds/castle.jpg', label: 'castle' },
         { url: '/images/backgrounds/desert.jpg', label: 'desert' },
         { url: '/images/backgrounds/forest.jpg', label: 'forest' },
         { url: '/images/backgrounds/market.jpg', label: 'market' },
     ];
+
+    const [selectedImage, setSelectedImage] = useState<Image | null>(imageList[1]);
+
+    const handleSelectImage = (selectedImage: Image | null) => {
+        setSelectedImage(selectedImage);
+    };
+
 
     return (
         <div style={{ position: 'relative' }}>

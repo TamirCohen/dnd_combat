@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "homepage": "https://tamircohen.github.io/dnd_combat",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -21,6 +22,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,6 +49,7 @@
   },
   "devDependencies": {
     "@types/react-dom": "^18.2.18",
-    "@types/react-slider": "^1.3.6"
+    "@types/react-slider": "^1.3.6",
+    "gh-pages": "^6.1.1"
   }
 }

@@ -8,10 +8,10 @@ interface BackgroundProps {
 
 const BackgroundComponent: React.FC<BackgroundProps> = ({ children }) => {
     const imageList: Image[] = [
-        { url: '/images/backgrounds/castle.jpg', label: 'castle' },
-        { url: '/images/backgrounds/desert.jpg', label: 'desert' },
-        { url: '/images/backgrounds/forest.jpg', label: 'forest' },
-        { url: '/images/backgrounds/market.jpg', label: 'market' },
+        { url: '/dnd_combat/images/backgrounds/castle.jpg', label: 'castle' },
+        { url: '/dnd_combat/images/backgrounds/desert.jpg', label: 'desert' },
+        { url: '/dnd_combat/images/backgrounds/forest.jpg', label: 'forest' },
+        { url: '/dnd_combat/images/backgrounds/market.jpg', label: 'market' },
     ];
 
     const [selectedImage, setSelectedImage] = useState<Image | null>(imageList[1]);

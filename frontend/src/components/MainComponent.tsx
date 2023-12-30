@@ -8,11 +8,11 @@ import SliderSizes from './BoardSizeSlider';
 
 const MainComponent: React.FC = () => {
     const [characters, setCharacters] = useState([
-        { id: 1, name: 'Luk', image: '/images/characters/Luk_worm.jpg', location: { row: 0, col: 0 } },
-        { id: 2, name: 'Madav', image: '/images/characters/Madav_holden.jpg', location: { row: 0, col: 1 } },
-        { id: 3, name: 'Troya', image: '/images/characters/Troya_bolton.jpg', location: { row: 0, col: 2 } },
-        { id: 4, name: 'Veronika', image: '/images/characters/Veronika.jpg', location: { row: 0, col: 3 } },
-        { id: 5, name: 'Zak', image: '/images/characters/Zak_Banan.jpg', location: { row: 0, col: 4 } },
+        { id: 1, name: 'Luk', image: '/dnd_combat/images/characters/Luk_worm.jpg', location: { row: 0, col: 0 } },
+        { id: 2, name: 'Madav', image: '/dnd_combat/images/characters/Madav_holden.jpg', location: { row: 0, col: 1 } },
+        { id: 3, name: 'Troya', image: '/dnd_combat/images/characters/Troya_bolton.jpg', location: { row: 0, col: 2 } },
+        { id: 4, name: 'Veronika', image: '/dnd_combat/images/characters/Veronika.jpg', location: { row: 0, col: 3 } },
+        { id: 5, name: 'Zak', image: '/dnd_combat/images/characters/Zak_Banan.jpg', location: { row: 0, col: 4 } },
         // Add more characters as needed
     ]);
     const [sliderValue, setSliderValue] = useState<number>(5);

@@ -30,7 +30,7 @@ const BackgroundComponent: React.FC<BackgroundProps> = ({ children }) => {
             <div
                 style={{
                     width: '100%',
-                    height: '500px',
+                    height: '100vh', // Set height to 100vh to cover the entire screen
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',

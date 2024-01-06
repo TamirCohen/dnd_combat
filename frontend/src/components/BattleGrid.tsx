@@ -1,12 +1,14 @@
-// MainComponent.tsx
+// BattleGrid.tsx
 import React, { useState } from 'react';
 import Character from './Character';
 import { CharacterState } from './Character';
 import GridCell from './GridCell';
 import ImageUploadForm from './ImageUploadForm';
 import SliderSizes from './BoardSizeSlider';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-const MainComponent: React.FC = () => {
+const BattleGrid: React.FC = () => {
     const [characters, setCharacters] = useState([
         { id: 1, name: 'Luk', image: '/dnd_combat/images/characters/Luk_worm.jpg', location: { row: 0, col: 0 } },
         { id: 2, name: 'Madav', image: '/dnd_combat/images/characters/Madav_holden.jpg', location: { row: 0, col: 1 } },
@@ -59,7 +61,7 @@ const MainComponent: React.FC = () => {
 
 
     return (
-        
+        <DndProvider backend={HTML5Backend}> 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <ImageUploadForm onImageUpload={handleImageUpload} />
                 <SliderSizes handleChange={handleSliderChange} />
@@ -82,7 +84,8 @@ const MainComponent: React.FC = () => {
                 )}
             </div>
         </div>
+        </DndProvider>
     );
 };
 
-export default MainComponent;
+export default BattleGrid;

@@ -1,15 +1,23 @@
 // App.tsx
 import React from 'react';
-import MainComponent from 'components/MainComponent';
-import BackgroundComponent from 'components/Background';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import BattleGrid from 'components/BattleGrid';
+import Background from 'components/Background';
+import ButtonAppBar from 'components/ButtonAppBar'
+import { useState } from 'react';
 
 const App: React.FC = () => {
+  const [backgroundImage, setBackgroundImage] = useState<string>("/dnd_combat/images/backgrounds/desert.jpg");
+
+  const set_background_image = (image: string) => {
+    setBackgroundImage(image);
+  }
   return (
-    <BackgroundComponent>
-      <DndProvider backend={HTML5Backend}> <MainComponent /> </DndProvider>
-    </BackgroundComponent>
+    <div>
+      <ButtonAppBar selectBackgroundImage={set_background_image}/>
+      <Background image={backgroundImage}>
+        <BattleGrid />
+      </Background>
+    </div>
 
   );
 };

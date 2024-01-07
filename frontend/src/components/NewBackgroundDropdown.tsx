@@ -7,14 +7,10 @@ import Typography from '@mui/material/Typography';
 
 interface ImageDropdownProps {
     onSelect: (selectedImage: string) => void;
+    images: string[];
 }
 
-const ImageDropdown: React.FC<ImageDropdownProps> = ({onSelect}) => {
-    const [images, setImages] = useState<string[]>([
-        '/dnd_combat/images/backgrounds/castle.jpg'
-        ,'/dnd_combat/images/backgrounds/desert.jpg'
-        ,'/dnd_combat/images/backgrounds/forest.jpg'
-        ,'/dnd_combat/images/backgrounds/market.jpg']);
+const ImageDropdown: React.FC<ImageDropdownProps> = ({onSelect, images}) => {
         
     const handleImageChange = (event: SelectChangeEvent) => {
         const selectedValue = event.target.value as string;

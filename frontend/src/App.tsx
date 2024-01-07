@@ -19,6 +19,12 @@ const App: React.FC = () => {
     { id: 5, name: 'Zak', image: '/dnd_combat/images/characters/Zak_Banan.jpg', location: { row: 0, col: 4 } },
     // Add more characters as needed
   ]);
+  const [backgroundImages, setImages] = useState<string[]>([
+    '/dnd_combat/images/backgrounds/castle.jpg'
+    ,'/dnd_combat/images/backgrounds/desert.jpg'
+    ,'/dnd_combat/images/backgrounds/forest.jpg'
+    ,'/dnd_combat/images/backgrounds/market.jpg']);
+
   const handleDrop = (characterId: number, targetLocation: { row: number; col: number }) => {
     // Update the state to reflect the new location of the character
     console.log('Drop characterId', characterId);
@@ -65,11 +71,27 @@ const App: React.FC = () => {
     // Read the content of the file as a data URL
     reader.readAsDataURL(newImage);
   };
+  // Write uploadBackgroundImage function
+  const uploadBackgroundImage = (file: File) => {
+    const reader = new FileReader();
+    console.log('Adding Background');
+
+    reader.onload = (event) => {
+      // Get the data URL from the FileReader result
+      const dataUrl = event.target?.result as string;
+      setImages([...backgroundImages, dataUrl]);
+      console.log('Added Background');
+
+    };
+
+    // Read the content of the file as a data URL
+    reader.readAsDataURL(file);
+  };
 
   return (
     <div>
       <DndProvider backend={HTML5Backend}>
-        <ButtonAppBar selectBackgroundImage={set_background_image} deleteCharacter={deleteCharacter} />
+        <ButtonAppBar selectBackgroundImage={set_background_image} deleteCharacter={deleteCharacter} uploadBackgroundImage={uploadBackgroundImage} backgroundImages={backgroundImages}/>
         <Background image={backgroundImage}>
           <BattleGrid characters={characters} handleDrop={handleDrop} handleImageUpload={handleImageUpload}/>
         </Background>

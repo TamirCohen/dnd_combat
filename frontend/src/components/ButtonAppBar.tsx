@@ -9,13 +9,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ImageDropDown from './NewBackgroundDropdown';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteCharacters from './DeleteCharacters';
+import ImageUploadForm from './ImageUploadForm';
 
 interface ButtonAppBarProps {
   selectBackgroundImage: (selectedImage: string) => void;
   deleteCharacter: (character_id: number) => void;
+  uploadBackgroundImage: (file: File) => void;
+  backgroundImages: string[];
 }
 
-const ButtonAppBar: React.FC<ButtonAppBarProps> = ({selectBackgroundImage, deleteCharacter}) => {
+const ButtonAppBar: React.FC<ButtonAppBarProps> = ({ selectBackgroundImage, deleteCharacter, uploadBackgroundImage , backgroundImages}) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -30,13 +33,19 @@ const ButtonAppBar: React.FC<ButtonAppBarProps> = ({selectBackgroundImage, delet
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography color="inherit" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Dnd Battles
           </Typography>
-          <DeleteCharacters onDrop={deleteCharacter}/>
-          <ImageDropDown onSelect={selectBackgroundImage}/>
-          <Button color="inherit">Background</Button>
-          <Button color="inherit">Characters</Button>
+          <DeleteCharacters onDrop={deleteCharacter} />
+          <IconButton>
+            <ImageUploadForm onImageUpload={uploadBackgroundImage}>
+            <Typography  style={{ color: 'white' }}>
+              Upload Background
+            </Typography>
+            </ImageUploadForm>
+          </IconButton>
+
+          <ImageDropDown onSelect={selectBackgroundImage} images={backgroundImages} />
         </Toolbar>
       </AppBar>
     </Box>

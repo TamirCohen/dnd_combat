@@ -1,0 +1,6 @@
+- Delete characters (Are you sure?)
+- Change background
+- Edit character HP (With slider)
+- Big monsters
+- 
+

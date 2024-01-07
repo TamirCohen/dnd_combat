@@ -9,7 +9,7 @@ interface SliderSizesProps {
 const SliderSizes: React.FC<SliderSizesProps> = ({ handleChange }) => {
     return (
         <Box sx={{ width: 300 }}>
-            <Slider defaultValue={5} aria-label="Default" valueLabelDisplay="auto" onChange={handleChange} min={1} max={20} />
+            <Slider defaultValue={5} aria-label="Default" valueLabelDisplay="auto" onChange={handleChange} min={1} max={50} />
         </Box>
     );
 }

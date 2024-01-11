@@ -1,16 +1,15 @@
 // ImageDropdown.tsx
-import React, { useState } from 'react';
 import { MenuItem, FormControl, Select, InputLabel } from '@mui/material';
 import { SelectChangeEvent } from "@mui/material";
-import Typography from '@mui/material/Typography';
 
 
 interface ImageDropdownProps {
     onSelect: (selectedImage: string) => void;
     images: string[];
+    selected_image: string;
 }
 
-const ImageDropdown: React.FC<ImageDropdownProps> = ({onSelect, images}) => {
+const ImageDropdown: React.FC<ImageDropdownProps> = ({onSelect, images, selected_image}) => {
         
     const handleImageChange = (event: SelectChangeEvent) => {
         const selectedValue = event.target.value as string;
@@ -23,6 +22,7 @@ const ImageDropdown: React.FC<ImageDropdownProps> = ({onSelect, images}) => {
                 labelId="image-dropdown-label"
                 id="image-dropdown"
                 label="Select Image"
+                value={selected_image}
                 onChange={handleImageChange}
             >
                 {images.map((image, index) => (

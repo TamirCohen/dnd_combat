@@ -5,8 +5,6 @@ import { CharacterState } from './Character';
 import GridCell from './GridCell';
 import ImageUploadForm from './ImageUploadForm';
 import SliderSizes from './BoardSizeSlider';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 interface BattleGridProps {
     characters: CharacterState[];
@@ -16,7 +14,7 @@ interface BattleGridProps {
 
 
 const BattleGrid: React.FC<BattleGridProps> = ({characters, handleDrop, handleImageUpload}) => {
-    const [sliderValue, setSliderValue] = useState<number>(5);
+    const [sliderValue, setSliderValue] = useState<number>(10);
 
     const handleSliderChange = (event: Event, value: number | number[]) => {
         // Update parent component state

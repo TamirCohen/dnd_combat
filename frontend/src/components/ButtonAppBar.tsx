@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ImageDropDown from './NewBackgroundDropdown';
+import ImageDropDown from './BackgroundDropdown';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteCharacters from './DeleteCharacters';
 import ImageUploadForm from './ImageUploadForm';
@@ -16,9 +16,10 @@ interface ButtonAppBarProps {
   deleteCharacter: (character_id: number) => void;
   uploadBackgroundImage: (file: File) => void;
   backgroundImages: string[];
+  selectedBackgroundImage: string;
 }
 
-const ButtonAppBar: React.FC<ButtonAppBarProps> = ({ selectBackgroundImage, deleteCharacter, uploadBackgroundImage , backgroundImages}) => {
+const ButtonAppBar: React.FC<ButtonAppBarProps> = ({ selectBackgroundImage, deleteCharacter, uploadBackgroundImage , backgroundImages, selectedBackgroundImage}) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -45,7 +46,7 @@ const ButtonAppBar: React.FC<ButtonAppBarProps> = ({ selectBackgroundImage, dele
             </ImageUploadForm>
           </IconButton>
 
-          <ImageDropDown onSelect={selectBackgroundImage} images={backgroundImages} />
+          <ImageDropDown onSelect={selectBackgroundImage} images={backgroundImages} selected_image={selectedBackgroundImage}/>
         </Toolbar>
       </AppBar>
     </Box>

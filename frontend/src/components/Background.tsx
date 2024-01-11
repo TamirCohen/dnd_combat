@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import ImageDropdown from './BackgroundsDropdown';
-import { Image } from './BackgroundsDropdown';
+import React from 'react';
 
 interface BackgroundProps {
     children: React.ReactNode;

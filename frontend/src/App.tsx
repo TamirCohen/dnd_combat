@@ -8,25 +8,18 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { CharacterState } from 'components/Character';
 
 import { useState, useEffect } from 'react';
+import { initiateState} from 'utils/state';
 
 const App: React.FC = () => {
 
-  const initiate_state = (key_name: string, default_value: any) => {
-    const state = localStorage.getItem(key_name);
-    if (state) {
-      return JSON.parse(state);
-    }
-    return default_value;
-  }
-
   const [backgroundImages, setImages] = useState<string[]>(
-    initiate_state("backgroundImages", [
+    initiateState("backgroundImages", [
       '/dnd_combat/images/backgrounds/castle.jpg'
       , '/dnd_combat/images/backgrounds/desert.jpg'
       , '/dnd_combat/images/backgrounds/forest.jpg'
       , '/dnd_combat/images/backgrounds/market.jpg']));
   const [characters, setCharacters] = useState<CharacterState[]>(
-    initiate_state("characters", [
+    initiateState("characters", [
       { id: 1, name: 'Luk', image: '/dnd_combat/images/characters/Luk_worm.jpg', location: { row: 0, col: 0 } },
       { id: 2, name: 'Madav', image: '/dnd_combat/images/characters/Madav_holden.jpg', location: { row: 0, col: 1 } },
       { id: 3, name: 'Troya', image: '/dnd_combat/images/characters/Troya_bolton.jpg', location: { row: 0, col: 2 } },
@@ -35,22 +28,13 @@ const App: React.FC = () => {
       // Add more characters as needed
     ]));
 
-  const [backgroundImage, setBackgroundImage] = useState<string>(initiate_state('backgroundImage', '/dnd_combat/images/backgrounds/castle.jpg'));
+  const [backgroundImage, setBackgroundImage] = useState<string>(initiateState('backgroundImage', '/dnd_combat/images/backgrounds/castle.jpg'));
 
   useEffect(() => {
-    console.log('Saving to local storage');
     localStorage.setItem('backgroundImage', JSON.stringify(backgroundImage));
     localStorage.setItem('characters', JSON.stringify(characters));
     localStorage.setItem('backgroundImages', JSON.stringify(backgroundImages));
   }, [backgroundImage, characters, backgroundImages]);
-
-  useEffect(() => {
-    console.log('LOAD!');
-    const backgroundImage = localStorage.getItem('backgroundImage');
-    if (backgroundImage) {
-      setBackgroundImage(JSON.parse(backgroundImage));
-    }
-  }, []);
 
   const handleDrop = (characterId: number, targetLocation: { row: number; col: number }) => {
     // Update the state to reflect the new location of the character

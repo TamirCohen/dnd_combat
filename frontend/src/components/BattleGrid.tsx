@@ -1,10 +1,11 @@
 // BattleGrid.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import Character from './Character';
 import { CharacterState } from './Character';
 import GridCell from './GridCell';
 import ImageUploadForm from './ImageUploadForm';
 import SliderSizes from './BoardSizeSlider';
+import { initiateState} from 'utils/state';
 
 interface BattleGridProps {
     characters: CharacterState[];
@@ -14,8 +15,11 @@ interface BattleGridProps {
 
 
 const BattleGrid: React.FC<BattleGridProps> = ({characters, handleDrop, handleImageUpload}) => {
-    const [sliderValue, setSliderValue] = useState<number>(10);
-
+    const [sliderValue, setSliderValue] = useState<number>(initiateState("slider", 10));
+    useEffect(() => {
+        localStorage.setItem("slider", JSON.stringify(sliderValue));
+      }, [sliderValue]);
+    
     const handleSliderChange = (event: Event, value: number | number[]) => {
         // Update parent component state
         setSliderValue(Array.isArray(value) ? value[0] : value);
@@ -38,7 +42,7 @@ const BattleGrid: React.FC<BattleGridProps> = ({characters, handleDrop, handleIm
                 <ImageUploadForm onImageUpload={handleImageUpload} cssProps={dropzoneStyles}>
                     <p>Drop New Characters</p>
                 </ImageUploadForm>
-                <SliderSizes handleChange={handleSliderChange} />
+                <SliderSizes handleChange={handleSliderChange}  initial_value={sliderValue}/>
             
 
             <div style={{ display: 'grid', gridTemplateColumns: `repeat(${sliderValue}, 50px)`, gap: '1px', alignItems: 'center', justifyContent: 'center' }}>
